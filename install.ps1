@@ -13,7 +13,7 @@ Write-Host "[+] Python detected." -ForegroundColor Cyan
 
 # Install requirements
 Write-Host "[*] Installing dependencies..." -ForegroundColor Yellow
-python -m pip install PyGithub rich psutil python-dotenv --quiet
+python -m pip install rich psutil --quiet
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[-] Failed to install requirements." -ForegroundColor Red
