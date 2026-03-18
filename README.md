@@ -28,9 +28,12 @@ If you do not have Python installed:
 Run the following command to install the required libraries:
 python -m pip install -r requirements.txt
 
-### 3. Set GitHub Token
-Set your GitHub token as an environment variable:
-set GH_TOKEN=your_personal_access_token
+### 3. Configure Your Token
+1. Copy the `.env.example` file to a new file named `.env`:
+   `copy .env.example .env`
+2. Open the `.env` file and replace `your_token_here` with your actual GitHub token.
+
+(The `.env` file is already in `.gitignore`, so it will never be pushed to your repository.)
 
 ### 4. Run the Application
 python main.py
