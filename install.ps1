@@ -22,11 +22,9 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host "[+] Dependencies installed." -ForegroundColor Cyan
 
-# Check for main.py, download if missing
-if (!(Test-Path main.py)) {
-    Write-Host "[*] Downloading main.py from GitHub..." -ForegroundColor Yellow
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Crizneil/gh-criz-omni-tool/main/main.py" -OutFile "main.py"
-}
+# Always force download the absolute newest main.py update
+Write-Host "[*] Syncing latest main.py core from GitHub..." -ForegroundColor Yellow
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Crizneil/gh-criz-omni-tool/main/main.py" -OutFile "main.py" -UseBasicParsing
 
 Write-Host "[*] Launching GH-CRIZ OMNI TOOL..." -ForegroundColor Green
 python main.py
