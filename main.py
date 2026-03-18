@@ -203,12 +203,14 @@ class TerminalUI:
             elif choice == "2":
                 manager.network_sync()
             elif choice == "3":
-                print("\n[1] QUICK PUSH\n[2] FRIEND SYNC")
+                print("\n[1] QUICK PUSH\n[2] FRIEND SYNC\n[0] BACK")
                 git_choice = input("GIT@OMNI:~$ ").strip()
                 if git_choice == "1":
                     GitCenter.quick_push()
                 elif git_choice == "2":
                     GitCenter.friend_sync()
+                elif git_choice == "0":
+                    continue
             elif choice == "4":
                 ProjectArchitect.initialize()
             elif choice == "0":
