@@ -168,11 +168,8 @@ class TerminalUI:
         self.console = Console()
         self.banner = """
 [bold green]
-  GH-CRIZ OMNI TOOL
-  -----------------
-  STATION: PISCES
-  STATUS:  OPERATIONAL
-  SYSTEM:  DEVOPS-CLI
+┌──(criz㉿pisces)-[~]
+└─$ GH CRIZ 💨💨💨
 [/bold green]
         """
 
