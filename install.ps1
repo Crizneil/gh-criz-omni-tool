@@ -1,7 +1,7 @@
-# GH-CRIZ OMNI TOOL Installer
+# CRIZ TOOLS Installer
 # Professional Deployment Script for PISCES Workstation
 
-Write-Host "--- GH-CRIZ OMNI TOOL INSTALLER ---" -ForegroundColor Green
+Write-Host "--- CRIZ TOOLS INSTALLER ---" -ForegroundColor Green
 
 # Check for Python
 if (!(Get-Command python -ErrorAction SilentlyContinue)) {
@@ -26,5 +26,5 @@ Write-Host "[+] Dependencies installed." -ForegroundColor Cyan
 Write-Host "[*] Syncing latest main.py core from GitHub..." -ForegroundColor Yellow
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Crizneil/gh-criz-omni-tool/main/main.py" -OutFile "main.py" -UseBasicParsing
 
-Write-Host "[*] Launching GH-CRIZ OMNI TOOL..." -ForegroundColor Green
+Write-Host "[*] Launching CRIZ TOOLS..." -ForegroundColor Green
 python main.py

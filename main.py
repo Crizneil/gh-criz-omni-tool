@@ -176,12 +176,12 @@ class TerminalUI:
     def __init__(self):
         self.console = Console()
         self.banner = """
-[bold yellow]            ██████╗ ██╗  ██╗   [/bold yellow][bold cyan]  ██████╗██████╗ ██╗███████╗ [/bold cyan]
-[bold yellow]           ██╔════╝ ██║  ██║   [/bold yellow][bold cyan] ██╔════╝██╔══██╗██║╚══███╔╝ [/bold cyan]
-[bold yellow]           ██║  ███╗███████║   [/bold yellow][bold cyan] ██║     ██████╔╝██║  ███╔╝  [/bold cyan]
-[bold yellow]           ██║   ██║██╔══██║   [/bold yellow][bold cyan] ██║     ██╔══██╗██║ ███╔╝   [/bold cyan]
-[bold yellow]           ╚██████╔╝██║  ██║   [/bold yellow][bold cyan] ╚██████╗██║  ██║██║███████╗ [/bold cyan]
-[bold yellow]            ╚═════╝ ╚═╝  ╚═╝   [/bold yellow][bold cyan]  ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝ [/bold cyan]
+[bold cyan]  ██████╗██████╗ ██╗███████╗  [/bold cyan] [bold yellow] ████████╗██████╗  ██████╗ ██╗     ███████╗[/bold yellow]
+[bold cyan] ██╔════╝██╔══██╗██║╚══███╔╝  [/bold cyan] [bold yellow] ╚══██╔══╝██╔══██╗██╔═══██╗██║     ██╔════╝[/bold yellow]
+[bold cyan] ██║     ██████╔╝██║  ███╔╝   [/bold cyan] [bold yellow]    ██║   ██║  ██║██║   ██║██║     ███████╗[/bold yellow]
+[bold cyan] ██║     ██╔══██╗██║ ███╔╝    [/bold cyan] [bold yellow]    ██║   ██║  ██║██║   ██║██║     ╚════██║[/bold yellow]
+[bold cyan] ╚██████╗██║  ██║██║███████╗  [/bold cyan] [bold yellow]    ██║   ██████╔╝╚██████╔╝███████╗███████║[/bold yellow]
+[bold cyan]  ╚═════╝╚═╝  ╚═╝╚═╝╚══════╝  [/bold cyan] [bold yellow]    ╚═╝   ╚═════╝  ╚═════╝ ╚══════╝╚══════╝[/bold yellow]
         """
 
     def get_system_monitor(self):
