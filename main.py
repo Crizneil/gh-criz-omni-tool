@@ -504,26 +504,31 @@ class AutomationTools:
     def telegram_alert(message=None):
         print("[*] Sending Telegram Notification...")
         token = os.getenv("TELEGRAM_BOT_TOKEN")
-        chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        chat_ids = os.getenv("TELEGRAM_CHAT_ID")
         
-        if not token or not chat_id:
-            print("[-] Error: TELEGRAM_BOT_TOKEN or CH_CHAT_ID missing in .env")
+        if not token or not chat_ids:
+            print("[-] Error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing in .env")
             return
             
         if not message:
             message = input("Enter message to send: ").strip() or "Hello from Omni-Tool!"
             
         url = f"https://api.telegram.org/bot{token}/sendMessage"
-        payload = {"chat_id": chat_id, "text": message}
         
-        try:
-            response = requests.post(url, json=payload, timeout=10)
-            if response.status_code == 200:
-                print("[+] Notification sent successfully!")
-            else:
-                print(f"[-] Failed to send: {response.text}")
-        except Exception as e:
-            print(f"[-] Telegram Error: {e}")
+        # Support multiple IDs comma-separated
+        for chat_id in chat_ids.split(','):
+            chat_id = chat_id.strip()
+            if not chat_id: continue
+            payload = {"chat_id": chat_id, "text": message}
+            
+            try:
+                response = requests.post(url, json=payload, timeout=10)
+                if response.status_code == 200:
+                    print(f"[+] Notification sent to {chat_id}!")
+                else:
+                    print(f"[-] Failed to send to {chat_id}: {response.text}")
+            except Exception as e:
+                print(f"[-] Telegram Error for {chat_id}: {e}")
 
 class TerminalUI:
     def __init__(self):
