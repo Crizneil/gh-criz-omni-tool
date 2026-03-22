@@ -114,12 +114,20 @@ class PersonalTools:
             f.write(f"Streak updated at: {timestamp}\n")
             
         try:
-            subprocess.run(["git", "add", streak_file], check=True)
-            subprocess.run(["git", "commit", "-m", f"daily streak: {timestamp}"], check=True)
-            subprocess.run(["git", "push", "origin", "main"], check=True)
+            subprocess.run(["git", "add", streak_file], check=True, capture_output=True, text=True)
+            subprocess.run(["git", "commit", "-m", f"daily streak: {timestamp}"], check=True, capture_output=True, text=True)
+            subprocess.run(["git", "push", "origin", "main"], check=True, capture_output=True, text=True)
             print(f"[+] Streak successfully updated and pushed! Graph is GREEN. [{timestamp}]")
         except subprocess.CalledProcessError as e:
-            print(f"[-] Streak Error: Ensure you have git configured and 'origin main' exists.")
+            print(f"[-] Streak Error:")
+            if "could not read from remote repository" in str(e.stderr).lower():
+                print("    > Error: Cannot connect to GitHub. Check your internet or SSH/HTTPS access.")
+            elif "src refspec main does not match any" in str(e.stderr).lower():
+                print("    > Error: Your branch might not be 'main'. Try 'master'?")
+            else:
+                print(f"    > {e.stderr}")
+        except Exception as e:
+            print(f"[-] Unexpected Streak Error: {e}")
 
     @staticmethod
     def get_github_client():
@@ -244,15 +252,19 @@ class TerminalUI:
             
             choice = input("CRIZ@OMNI:~$ ").strip()
 
-            if choice == "1":
-                self.personal_menu()
-            elif choice == "2":
-                self.github_menu()
-            elif choice == "3":
-                self.windows_menu()
-            elif choice == "0":
-                print("STATION OFFLINE.")
-                break
+            try:
+                if choice == "1":
+                    self.personal_menu()
+                elif choice == "2":
+                    self.github_menu()
+                elif choice == "3":
+                    self.windows_menu()
+                elif choice == "0":
+                    print("STATION OFFLINE.")
+                    break
+            except Exception as e:
+                print(f"\n[bold red]CRITICAL ERROR IN MAIN LOOP:[/bold red] {e}")
+                input("Press ENTER to return to menu...")
 
     def github_menu(self):
         while True:
