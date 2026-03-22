@@ -13,7 +13,7 @@ Write-Host "[+] Python detected." -ForegroundColor Cyan
 
 # Install requirements
 Write-Host "[*] Installing dependencies..." -ForegroundColor Yellow
-python -m pip install rich psutil --quiet
+python -m pip install PyGithub rich psutil python-dotenv pyperclip --quiet
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[-] Failed to install requirements." -ForegroundColor Red
@@ -24,7 +24,7 @@ Write-Host "[+] Dependencies installed." -ForegroundColor Cyan
 
 # Always force download the absolute newest main.py update
 Write-Host "[*] Syncing latest main.py core from GitHub..." -ForegroundColor Yellow
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Crizneil/criztools/main/main.py" -OutFile "main.py" -UseBasicParsing
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Crizneil/gh-criz-omni-tool/main/main.py" -OutFile "main.py" -UseBasicParsing
 
 Write-Host "[*] Launching CRIZ TOOLS..." -ForegroundColor Green
 python main.py
