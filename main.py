@@ -566,7 +566,6 @@ class TelegramBotListener:
             return
         thread = threading.Thread(target=self.poll, daemon=True)
         thread.start()
-        print("[+] Telegram Interactive Bot started (Background).")
 
     def poll(self):
         while self.running:
@@ -585,16 +584,12 @@ class TelegramBotListener:
                         username = message.get("from", {}).get("username", "Unknown")
                         text = message.get("text", "").lower()
                         
-                        print(f"[*] Telegram Msg from {username} ({chat_id}): {text}")
-                        
                         if chat_id not in self.chat_ids:
-                            print(f"[!] Unauthorized Chat ID: {chat_id}")
                             continue 
                             
                         self.handle_command(text, chat_id)
-            except Exception as e:
-                print(f"[!] Telegram Poll Error: {e}")
-                time.sleep(10)
+            except Exception:
+                time.sleep(15)
 
     def handle_command(self, text, chat_id):
         if text.startswith("/status"):

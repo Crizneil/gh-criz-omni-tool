@@ -19,7 +19,7 @@ if (!(Test-Path ".git")) {
     if ($confirm -ne 'y') { exit 0 }
 }
 Write-Host "[*] Installing dependencies..." -ForegroundColor Yellow
-python -m pip install PyGithub rich psutil python-dotenv pyperclip --quiet
+python -m pip install PyGithub rich psutil python-dotenv pyperclip requests speedtest-cli pyautogui --quiet
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[-] Failed to install requirements." -ForegroundColor Red
