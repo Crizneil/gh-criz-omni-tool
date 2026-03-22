@@ -544,7 +544,7 @@ class AutomationTools:
         
         # Support multiple IDs comma-separated
         for chat_id in chat_ids.split(','):
-            chat_id = chat_id.strip()
+            chat_id = chat_id.strip().strip('"').strip("'")
             if not chat_id: continue
             payload = {"chat_id": chat_id, "text": message}
             
@@ -565,7 +565,7 @@ class AutomationTools:
         
         url = f"https://api.telegram.org/bot{token}/sendPhoto"
         for chat_id in chat_ids.split(','):
-            chat_id = chat_id.strip()
+            chat_id = chat_id.strip().strip('"').strip("'")
             if not chat_id: continue
             try:
                 with open(photo_path, 'rb') as photo:
@@ -578,7 +578,7 @@ class AutomationTools:
 class TelegramBotListener:
     def __init__(self):
         self.token = os.getenv("TELEGRAM_BOT_TOKEN")
-        self.chat_ids = [idx.strip() for idx in (os.getenv("TELEGRAM_CHAT_ID") or "").split(',') if idx.strip()]
+        self.chat_ids = [idx.strip().strip('"').strip("'") for idx in (os.getenv("TELEGRAM_CHAT_ID") or "").split(',') if idx.strip()]
         self.last_update_id = 0
         self.running = True
 
